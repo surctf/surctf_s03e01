@@ -1,10 +1,10 @@
 package internal
 
 type User struct {
-	ID        int64    `json:"id" gorm:"primaryKey;autoIncrement:false"`
-	Username  string   `json:"username" gorm:"column:username;not null"`
-	Balance   int      `json:"balance" gorm:"column:balance;default:0"`
-	Purchases Purchase `json:"solves" gorm:"constraint:OnDelete:CASCADE;"`
+	ID        int64      `json:"id" gorm:"primaryKey;autoIncrement:false"`
+	Username  string     `json:"username" gorm:"column:username;not null"`
+	Balance   int        `json:"balance" gorm:"column:balance;"`
+	Purchases []Purchase `json:"purchases" gorm:"constraint:OnDelete:CASCADE;"`
 }
 
 type Product struct {
@@ -16,7 +16,8 @@ type Product struct {
 }
 
 type Purchase struct {
-	UserID    int64   `json:"-" gorm:"column:user_id;primaryKey;not null"`
-	ProductID int     `json:"-" gorm:"column:product_id;primaryKey;not null"`
+	ID        int     `json:"id" gorm:"primaryKey"`
+	UserID    int64   `json:"-" gorm:"column:user_id;not null"`
+	ProductID int     `json:"-" gorm:"column:product_id;not null"`
 	Product   Product `json:"product" gorm:"foreignKey:ProductID"`
 }

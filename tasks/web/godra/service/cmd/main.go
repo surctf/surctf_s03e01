@@ -49,16 +49,18 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	handlerContext := internal.HandlerContext{DB: db}
-
 	router := gin.Default()
 	router.Use(internal.JSONLogMiddleware(log),
 		internal.TgAuthMiddleware(getSecret([]byte(os.Getenv("BOT_TOKEN")))),
 	)
+	registeredMW := internal.RegisteredMiddleware(db, router)
 
-	//router.GET("/signup", handlerContext.GetSignUp)
-	router.POST("/signup", handlerContext.PostSignUp)
-	//router.GET("/profile", handlerContext.GetPrivacyPolicy)
+	handlerContext := internal.HandlerContext{DB: db, Router: router}
+
+	router.GET("/signup", handlerContext.GetSignUp)
+	router.POST("/signup", internal.ReadRequestBodyMiddleware, handlerContext.PostSignUp)
+
+	router.GET("/profile", registeredMW, handlerContext.GetProfile)
 	//router.DELETE("/profile", handlerContext.GetPrivacyPolicy)
 	//
 	//router.GET("/products", handlerContext.GetPrivacyPolicy)

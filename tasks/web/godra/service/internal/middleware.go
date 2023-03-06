@@ -5,9 +5,12 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
+	"gorm.io/gorm"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -63,6 +66,38 @@ func TgAuthMiddleware(secret []byte) gin.HandlerFunc {
 		c.Set("tgUsername", user.Username)
 		c.Next()
 	}
+}
+
+func RegisteredMiddleware(db *gorm.DB, r *gin.Engine) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		userID := c.GetInt64("tgID")
+
+		var user User
+		if err := db.Where("id = ?", userID).First(&user).Error; err != nil {
+			if !errors.Is(err, gorm.ErrRecordNotFound) {
+				c.Error(err)
+			}
+
+			c.Request.URL.Path = "/signup"
+			r.HandleContext(c)
+			//c.Redirect(http.StatusMovedPermanently, "/signup")
+			return
+		}
+
+		c.Set("user", user)
+		c.Next()
+	}
+}
+
+func ReadRequestBodyMiddleware(c *gin.Context) {
+	body, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest,
+			gin.H{"err": "can't read request body"})
+		return
+	}
+	c.Set("requestBody", string(body))
+	c.Next()
 }
 
 func JSONLogMiddleware(log *logrus.Logger) gin.HandlerFunc {

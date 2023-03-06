@@ -3,13 +3,15 @@ package internal
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"net/http"
 )
 
 type HandlerContext struct {
-	DB *gorm.DB
+	DB     *gorm.DB
+	Router *gin.Engine
 }
 
-func (hc *HandlerContext) PostSignUp(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"good": "good"})
+func (hc *HandlerContext) redirectWithMethod(c *gin.Context, method string, path string) {
+	c.Request.URL.Path = path
+	c.Request.Method = method
+	hc.Router.HandleContext(c)
 }
