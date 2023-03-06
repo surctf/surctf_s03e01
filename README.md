@@ -8,8 +8,8 @@
 
 ## Таски
 
-### `#crypto`
-[Великий Xi Нефритовый стержень завод](tasks/crypto/velikiy_zavod) (crypto 200)  
+### `#web`
+[godra](tasks/web/godra) (web 200)  
 
 ### `#forensic`
 
@@ -23,7 +23,7 @@
 
 ### `#stegano`
 
-### `#web`
+### `#crypto`
 
 ## Организаторы
 
