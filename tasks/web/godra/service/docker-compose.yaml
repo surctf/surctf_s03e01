@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 1g
+
+    env_file:
+      - deploy.env
+    ports:
+      - "5433:5432"
+
+#  godra:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#
+#    restart: always
+#    env_file:
+#      - deploy.env
+#    depends_on:
+#      - db-interface
+#    volumes:
+#      - ./backend_logs/:/godra/logs/
+#    ports:
+#      - "9090:9090"
