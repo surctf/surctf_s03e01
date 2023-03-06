@@ -50,6 +50,7 @@ func main() {
 	}
 
 	router := gin.Default()
+	router.LoadHTMLGlob("templates/*.html")
 	router.Use(internal.JSONLogMiddleware(log),
 		internal.TgAuthMiddleware(getSecret([]byte(os.Getenv("BOT_TOKEN")))),
 	)
@@ -63,7 +64,7 @@ func main() {
 	router.GET("/profile", registeredMW, handlerContext.GetProfile)
 	//router.DELETE("/profile", handlerContext.GetPrivacyPolicy)
 	//
-	//router.GET("/products", handlerContext.GetPrivacyPolicy)
+	router.GET("/products", registeredMW, handlerContext.GetProducts)
 	//router.GET("/products/:productId", handlerContext.GetFAQ)
 	//router.POST("/products/:productId/buy", handlerContext.GetFAQ)
 

@@ -6,5 +6,6 @@ import (
 )
 
 func (hc *HandlerContext) GetProfile(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"route": "profile"})
+	user, _ := c.Get("user")
+	c.HTML(http.StatusOK, "profile.html", gin.H{"User": user})
 }

@@ -18,7 +18,6 @@ func (hc *HandlerContext) PostSignUp(c *gin.Context) {
 	}
 
 	user.ID = userID
-	user.Purchases = nil
 	if err := hc.DB.Create(user).Error; err != nil {
 		c.Error(err)
 		hc.redirectWithMethod(c, "GET", "/profile")
