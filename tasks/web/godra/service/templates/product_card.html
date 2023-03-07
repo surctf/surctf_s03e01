@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ .Product.Name }}</title>
+</head>
+<body>
+{{ template "navbar.html" }}
+{{ .Product.Name }} - {{ .Product.Description }} - {{ .Product.Cost }}
+</body>
+</html>

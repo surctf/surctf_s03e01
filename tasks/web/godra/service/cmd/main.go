@@ -62,11 +62,11 @@ func main() {
 	router.POST("/signup", internal.ReadRequestBodyMiddleware, handlerContext.PostSignUp)
 
 	router.GET("/profile", registeredMW, handlerContext.GetProfile)
-	//router.DELETE("/profile", handlerContext.GetPrivacyPolicy)
+	router.DELETE("/profile", registeredMW, handlerContext.DeleteProfile)
 	//
 	router.GET("/products", registeredMW, handlerContext.GetProducts)
-	//router.GET("/products/:productId", handlerContext.GetFAQ)
-	//router.POST("/products/:productId/buy", handlerContext.GetFAQ)
+	router.GET("/products/:productId", registeredMW, handlerContext.GetProduct)
+	router.POST("/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
 
 	if err := router.Run(os.Getenv("SERVICE_ADDR")); err != nil {
 		log.Fatalln(err)

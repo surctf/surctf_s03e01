@@ -79,6 +79,7 @@ func RegisteredMiddleware(db *gorm.DB, r *gin.Engine) gin.HandlerFunc {
 			}
 
 			c.Request.URL.Path = "/signup"
+			c.Request.Method = "GET"
 			r.HandleContext(c)
 			//c.Redirect(http.StatusMovedPermanently, "/signup")
 			return

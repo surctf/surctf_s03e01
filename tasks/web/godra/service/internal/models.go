@@ -2,7 +2,7 @@ package internal
 
 type User struct {
 	ID       int64  `json:"id" gorm:"primaryKey;autoIncrement:false"`
-	Username string `json:"username" gorm:"column:username;not null"`
+	Username string `json:"username" gorm:"column:username;unique;not null"`
 	Balance  int    `json:"balance" gorm:"column:balance;"`
 }
 
@@ -10,6 +10,7 @@ type Product struct {
 	ID          int    `json:"id" gorm:"primaryKey"`
 	Name        string `json:"name" gorm:"column:name"`
 	Description string `json:"description" gorm:"column:description"`
+	Secret      string `json:"secret" gorm:"column:secret"`
 	Image       string `json:"image" gorm:"column:image"`
 	Cost        int    `json:"cost" gorm:"column:cost"`
 	Purchased   bool   `json:"purchased" gorm:"-"`
