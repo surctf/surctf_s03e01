@@ -41,7 +41,7 @@ func (hc *HandlerContext) CreateUser(c *gin.Context) {
 	if err := hc.DB.Create(user).Error; err != nil {
 		var pqErr *pgconn.PgError
 		if ok := errors.As(err, &pqErr); ok && pqErr.Code == "23505" {
-			c.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": "Юзернейм уже занят"})
+			c.AbortWithStatusJSON(http.StatusConflict, gin.H{"error": "Юзернейм уже занят или ты уже зареган"})
 			return
 		}
 		c.Error(err)

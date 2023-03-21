@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/hmac"
 	"crypto/sha256"
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
@@ -57,13 +58,15 @@ func main() {
 
 	handlerContext := internal.HandlerContext{DB: db}
 
+	router.GET("/colab", registeredMW, handlerContext.GetColabFlag)
+
 	router.GET("/user", registeredMW, handlerContext.GetUser)
 	router.POST("/user", internal.ReadRequestBodyMiddleware, handlerContext.CreateUser)
 	router.DELETE("/user", registeredMW, handlerContext.DeleteUser)
 
-	//router.GET("/products", registeredMW, handlerContext.GetProducts)
-	//router.GET("/products/:productId", registeredMW, handlerContext.GetProduct)
-	//router.POST("/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
+	router.GET("/products", registeredMW, handlerContext.GetProducts)
+	router.GET("/products/:productId", registeredMW, handlerContext.GetProduct)
+	router.POST("/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
 
 	if err := router.Run(os.Getenv("SERVICE_ADDR")); err != nil {
 		log.Fatalln(err)
@@ -94,9 +97,19 @@ func configureDB(db *gorm.DB) error {
 	}
 
 	// Создаем записи продуктов, если их нет
-	//if err := db.FirstOrCreate(&models.Event{}).Error; err != nil {
-	//	return err
-	//}
+	productsJSON := []byte(os.Getenv("PRODUCTS_JSON"))
+	p := struct {
+		Products []internal.Product `json:"products"`
+	}{}
+	if err := json.Unmarshal(productsJSON, &p); err != nil {
+		return err
+	}
+
+	for _, product := range p.Products {
+		if err := db.FirstOrCreate(&product).Error; err != nil {
+			return err
+		}
+	}
 
 	return nil
 }
