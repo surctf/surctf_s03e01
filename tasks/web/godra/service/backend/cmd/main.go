@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"godra/internal"
+	"godra/backend/internal"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"io"
@@ -50,23 +50,20 @@ func main() {
 	}
 
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/*.html")
 	router.Use(internal.JSONLogMiddleware(log),
 		internal.TgAuthMiddleware(getSecret([]byte(os.Getenv("BOT_TOKEN")))),
 	)
 	registeredMW := internal.RegisteredMiddleware(db, router)
 
-	handlerContext := internal.HandlerContext{DB: db, Router: router}
+	handlerContext := internal.HandlerContext{DB: db}
 
-	router.GET("/signup", handlerContext.GetSignUp)
-	router.POST("/signup", internal.ReadRequestBodyMiddleware, handlerContext.PostSignUp)
+	router.GET("/user", registeredMW, handlerContext.GetUser)
+	router.POST("/user", internal.ReadRequestBodyMiddleware, handlerContext.CreateUser)
+	router.DELETE("/user", registeredMW, handlerContext.DeleteUser)
 
-	router.GET("/profile", registeredMW, handlerContext.GetProfile)
-	router.DELETE("/profile", registeredMW, handlerContext.DeleteProfile)
-	//
-	router.GET("/products", registeredMW, handlerContext.GetProducts)
-	router.GET("/products/:productId", registeredMW, handlerContext.GetProduct)
-	router.POST("/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
+	//router.GET("/products", registeredMW, handlerContext.GetProducts)
+	//router.GET("/products/:productId", registeredMW, handlerContext.GetProduct)
+	//router.POST("/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
 
 	if err := router.Run(os.Getenv("SERVICE_ADDR")); err != nil {
 		log.Fatalln(err)

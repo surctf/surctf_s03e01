@@ -9,6 +9,16 @@ import (
 	"strconv"
 )
 
+type Product struct {
+	ID          int    `json:"id" gorm:"primaryKey"`
+	Name        string `json:"name" gorm:"column:name"`
+	Description string `json:"description" gorm:"column:description"`
+	Secret      string `json:"secret" gorm:"column:secret"`
+	Image       string `json:"image" gorm:"column:image"`
+	Cost        int    `json:"cost" gorm:"column:cost"`
+	Purchased   bool   `json:"purchased" gorm:"-"`
+}
+
 func (hc *HandlerContext) GetProducts(c *gin.Context) {
 	var products []Product
 	if err := hc.DB.Omit("Secret").Find(&products).Error; err != nil {
@@ -119,6 +129,4 @@ func (hc *HandlerContext) BuyProduct(c *gin.Context) {
 		c.Error(err)
 		return
 	}
-
-	hc.redirectWithMethod(c, "GET", "/profile")
 }

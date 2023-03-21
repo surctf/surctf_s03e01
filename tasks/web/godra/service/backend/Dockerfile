@@ -2,7 +2,7 @@ FROM golang:alpine AS builder
 
 WORKDIR /build
 
-COPY . .
+COPY .. .
 
 ENV CGO_ENABLED 0
 ENV GOOS linux

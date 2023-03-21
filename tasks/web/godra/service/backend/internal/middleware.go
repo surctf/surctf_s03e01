@@ -76,12 +76,11 @@ func RegisteredMiddleware(db *gorm.DB, r *gin.Engine) gin.HandlerFunc {
 		if err := db.Where("id = ?", userID).First(&user).Error; err != nil {
 			if !errors.Is(err, gorm.ErrRecordNotFound) {
 				c.Error(err)
+				c.AbortWithStatusJSON(http.StatusUnauthorized,
+					gin.H{"error": "для доступа к этим данным нужно быть зарегистрированным (not_registered)"})
 			}
-
-			c.Request.URL.Path = "/signup"
-			c.Request.Method = "GET"
-			r.HandleContext(c)
-			//c.Redirect(http.StatusMovedPermanently, "/signup")
+			c.AbortWithStatusJSON(http.StatusUnauthorized,
+				gin.H{"error": "для доступа к этим данным нужно быть зарегистрированным (not_registered)"})
 			return
 		}
 
