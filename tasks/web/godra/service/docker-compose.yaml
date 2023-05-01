@@ -8,8 +8,6 @@ services:
 
     env_file:
       - deploy.env
-    ports:
-      - "5433:5432"
 
   backend:
     build:
@@ -21,7 +19,17 @@ services:
       - deploy.env
     depends_on:
       - postgres
-    volumes:
-      - ./backend_logs/:/backend/logs/
+
+  nginx:
+    build:
+      context: ./frontend/
+      dockerfile: ./Dockerfile
+
+    restart: always
+    env_file:
+      - deploy.env
+    depends_on:
+      - backend
     ports:
-      - "80:8989"
+      - "8888:80"
+

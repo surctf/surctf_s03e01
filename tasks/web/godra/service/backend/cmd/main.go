@@ -58,15 +58,15 @@ func main() {
 
 	handlerContext := internal.HandlerContext{DB: db}
 
-	router.GET("/colab", registeredMW, handlerContext.GetColabFlag)
+	router.GET("/api/colab", registeredMW, handlerContext.GetColabFlag)
 
-	router.GET("/user", registeredMW, handlerContext.GetUser)
-	router.POST("/user", internal.ReadRequestBodyMiddleware, handlerContext.CreateUser)
-	router.DELETE("/user", registeredMW, handlerContext.DeleteUser)
+	router.GET("/api/user", registeredMW, handlerContext.GetUser)
+	router.POST("/api/user", internal.ReadRequestBodyMiddleware, handlerContext.CreateUser)
+	router.DELETE("/api/user", registeredMW, handlerContext.DeleteUser)
 
-	router.GET("/products", registeredMW, handlerContext.GetProducts)
-	router.GET("/products/:productId", registeredMW, handlerContext.GetProduct)
-	router.POST("/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
+	router.GET("/api/products", registeredMW, handlerContext.GetProducts)
+	router.GET("/api/products/:productId", registeredMW, handlerContext.GetProduct)
+	router.POST("/api/products/:productId/buy", registeredMW, handlerContext.BuyProduct)
 
 	if err := router.Run(os.Getenv("SERVICE_ADDR")); err != nil {
 		log.Fatalln(err)

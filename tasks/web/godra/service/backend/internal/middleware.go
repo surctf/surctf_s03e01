@@ -35,14 +35,14 @@ func TgAuthMiddleware(secret []byte) gin.HandlerFunc {
 
 		if len(initData) == 0 {
 			c.AbortWithStatusJSON(http.StatusBadRequest,
-				gin.H{"error": "не найдены телеграм данные (tg_data_not_found)"})
+				gin.H{"error": "не найдены телеграм данные"})
 			return
 		}
 
 		initDataDecoded, err := url.ParseQuery(initData)
 		if err != nil || !isValidInitData(initDataDecoded) {
 			c.AbortWithStatusJSON(http.StatusBadRequest,
-				gin.H{"error": "неправильный формат 'initData' (wrong_initdata_format)"})
+				gin.H{"error": "неправильный формат 'initData'"})
 			return
 		}
 
@@ -55,7 +55,7 @@ func TgAuthMiddleware(secret []byte) gin.HandlerFunc {
 
 		if hex.EncodeToString(h.Sum(nil)) != initDataDecoded["hash"][0] {
 			c.AbortWithStatusJSON(http.StatusForbidden,
-				gin.H{"error": "ошибка при проверке подлинности initData (fake_init_data)"})
+				gin.H{"error": "ошибка при проверке подлинности initData"})
 			return
 		}
 
@@ -77,10 +77,10 @@ func RegisteredMiddleware(db *gorm.DB, r *gin.Engine) gin.HandlerFunc {
 			if !errors.Is(err, gorm.ErrRecordNotFound) {
 				c.Error(err)
 				c.AbortWithStatusJSON(http.StatusUnauthorized,
-					gin.H{"error": "для доступа к этим данным нужно быть зарегистрированным (not_registered)"})
+					gin.H{"error": "для доступа к этим данным нужно быть зарегистрированным"})
 			}
 			c.AbortWithStatusJSON(http.StatusUnauthorized,
-				gin.H{"error": "для доступа к этим данным нужно быть зарегистрированным (not_registered)"})
+				gin.H{"error": "для доступа к этим данным нужно быть зарегистрированным"})
 			return
 		}
 
