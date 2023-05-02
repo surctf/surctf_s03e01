@@ -9,7 +9,7 @@
 ## Таски
 
 ### `#web`
-[godra](tasks/web/godra) (web 200)  
+[godra](tasks/web/godra) (web)  
 
 ### `#forensic`
 
