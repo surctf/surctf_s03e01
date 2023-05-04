@@ -17,7 +17,7 @@
                     <router-link class="nav-item nav-link" to="/settings">Настройки</router-link>
                 </nav>
             </template>
-            <router-view class="text-center" style="margin-top: 60px; margin-bottom: 60px" :tgInitData="tgInitData" :user="user" @updateUser="getUser" />
+            <router-view class="text-center" style="margin-top: 60px; margin-bottom: 60px" :tgInitData="tgInitData" :user="user" @updateUser="updateUser" />
         </template>
         <p v-else>
             Пж заходи через тг
@@ -61,6 +61,23 @@ export default {
                 })
                 .catch(err => {
                         this.$router.push("/signup")
+                        this.isLoading = false
+                        this.isRegistered = false
+                        console.log(err)
+                    }
+                )
+        },
+        updateUser() {
+            axios
+                .get("/api/user", {params: {initData: this.tgInitData}})
+                .then((resp) => {
+                    this.isRegistered = resp.status === 200;
+                    this.isLoading = false
+                    this.user = resp.data
+                })
+                .catch(err => {
+                        this.$router.push("/signup")
+                        this.user = undefined
                         this.isLoading = false
                         this.isRegistered = false
                         console.log(err)

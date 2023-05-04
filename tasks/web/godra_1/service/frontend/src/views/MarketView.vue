@@ -5,7 +5,7 @@
     <template v-else>
         <div class="d-flex flex-column" v-if="products && products.length">
             <div class="p-2 mx-auto" v-for="product in products">
-                <ProductCard :tgInitData="tgInitData" :product="product" v-if="!product.purchased"/>
+                <ProductCard :tgInitData="tgInitData" :product="product" @updateProducts="getProducts" v-if="!product.purchased"/>
             </div>
         </div>
         <div v-else> Пока нет новых товаров </div>
@@ -46,6 +46,7 @@ export default {
         }
     },
     mounted() {
+        this.$emit("updateUser")
         this.getProducts()
     }
 }

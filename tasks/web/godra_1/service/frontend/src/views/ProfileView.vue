@@ -17,5 +17,8 @@ export default {
     components: {ProductCard},
     emits: ["updateUser"],
     props: ["tgInitData", "user"],
+    mounted() {
+            this.$emit("updateUser")
+    }
 }
 </script>

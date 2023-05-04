@@ -21,7 +21,7 @@ import axios from "axios";
 export default {
     name: "ProductCard",
     props: ["product", "tgInitData", "isPurchased"],
-    emits: ["updateUser"],
+    emits: ["updateProducts"],
     methods: {
         showProduct(productId) {
             this.$router.push({
@@ -53,7 +53,7 @@ export default {
                         }
                     })
             }).then(resp => {
-                this.$emit("updateUser")
+                this.$emit("updateProducts")
                 return this.$swal.fire({
                     title: "Успешно! Посмотреть содержимое товара?",
                     showDenyButton: true,

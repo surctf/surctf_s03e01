@@ -23,27 +23,20 @@ export default {
     name: "PurchaseView.vue",
     emits: ["updateUser"],
     props: ["tgInitData", "user"],
-    data() {
-        return {
-            product: undefined
-        }
-    },
-    methods: {
-        getProduct() {
+    computed: {
+        product() {
             let prodId = this.$route.params.id
             for (const purchase of this.user.purchases.values()) {
                 console.log(purchase.product.id, prodId)
                 if (purchase.product.id === Number(prodId)) {
-                    this.product = purchase.product
-                    return
+                    return purchase.product
                 }
             }
+            return undefined
         }
     },
     mounted() {
-        console.log(this.product)
-        this.getProduct()
-        console.log(this.product)
+        this.$emit("updateUser")
     }
 }
 </script>
