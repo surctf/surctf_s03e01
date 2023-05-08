@@ -1,0 +1,1 @@
+`flag: surctf_godra_x_surctf_c0lab_0f_th3_dec4de`

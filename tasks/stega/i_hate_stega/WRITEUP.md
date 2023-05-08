@@ -1,0 +1,1 @@
+`flag: surctf_oh_my_god_stega_is_so_cool_i_hate_stega`

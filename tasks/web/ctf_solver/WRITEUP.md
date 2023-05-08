@@ -1,0 +1,1 @@
+`flag: surctf_omg_ch4tgpt_n0w_s0lv1ng_ctfs_or_not`
