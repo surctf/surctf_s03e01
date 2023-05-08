@@ -1,0 +1,5 @@
+Flask==2.3.2
+peewee==3.16.2
+python-dotenv==1.0.0
+psycopg2==2.9.6
+gunicorn
