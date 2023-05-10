@@ -1,0 +1,1 @@
+`flag: surctf_omg_you_can_watch_shrek_full_movie_in_tg_stickers`
