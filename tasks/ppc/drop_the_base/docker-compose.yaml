@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  service:
+    build:
+      context: ./service/
+      dockerfile: ./Dockerfile
+
+    restart: always
+    ports:
+      - "26065:9876"
+
