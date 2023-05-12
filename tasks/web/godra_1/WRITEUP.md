@@ -1,1 +1,1 @@
-`flag: surctf_def1nit3ly_n0t_f4ke_fl4g`
+`flag: surctf_omg_surctf_n0w_p2win`
