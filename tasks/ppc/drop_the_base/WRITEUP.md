@@ -1,1 +1,1 @@
-`flag: surctf_def1nit3ly_n0t_f4ke_fl4g`
+`flag: surctf_drop_the_base_or_drop_the_bass`
