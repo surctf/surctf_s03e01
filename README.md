@@ -38,10 +38,10 @@
 [Mark The Game (lvl 2)](tasks/reverse/Mark%20The%20Game%20(lvl%202))  
 
 ### `#stegano`
-[surctf_stick](tasks/stegano/surctf_stick)  
-[i hate stega](tasks/stegano/i%20hate%20stega)  
-[forbidden_photo_zone](tasks/stegano/forbidden_photo_zone)  
-[Symphony](tasks/stegano/Symphony)  
+[surctf_stick](tasks/stega/surctf_stick)  
+[i hate stega](tasks/stega/i%20hate%20stega)  
+[forbidden_photo_zone](tasks/stega/forbidden_photo_zone)  
+[Symphony](tasks/stega/Symphony)  
 
 ### `#crypto`
 [speaking_with_hands](tasks/crypto/speaking_with_hands)  
