@@ -1,0 +1,8 @@
+## Идеальное преступление 1
+by [@s4lat](https://github.com/s4lat), [#forensic](/README.md#forensic), 200
+
+> Никита ненадолго вышел погулять и забыл заблокировать компьютер, когда он вернулся, оказалось, что он не может авторизоваться обратно. Может у тебя получится? <br>
+<a href="https://drive.google.com/file/d/1yqPcS6_0RD9BY99RfiCh_bCBaAo3d4lS/view?usp=share_link" style="color: blue"><strong> Образ </strong></a><br>
+<span style="font-size: 14px">(Если качать с гугл диска слишком долго, то можете подойти к оргам и попросить у них флешку с образом)</span>
+
+[Write-up](WRITEUP.md)

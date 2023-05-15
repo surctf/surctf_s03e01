@@ -1,0 +1,1 @@
+`flag: surctf_hahaha_blockchain_is_chain_of_blocks`

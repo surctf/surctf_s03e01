@@ -1,0 +1,1 @@
+`flag: surctf_suzuki_made_me_satisfied`

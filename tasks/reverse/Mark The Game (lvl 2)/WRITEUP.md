@@ -1,0 +1,1 @@
+`flag: surctf_nthg_15_1msbl886`

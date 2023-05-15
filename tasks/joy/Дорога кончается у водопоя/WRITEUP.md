@@ -1,0 +1,1 @@
+`flag: surctf_among_the_blind_the_one_eyed_man_is_king`

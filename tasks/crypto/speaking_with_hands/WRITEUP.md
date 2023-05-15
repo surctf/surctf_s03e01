@@ -1,0 +1,1 @@
+`flag: surctf_wingdings_got_nothing_on_you`

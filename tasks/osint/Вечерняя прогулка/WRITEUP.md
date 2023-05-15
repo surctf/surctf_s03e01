@@ -1,0 +1,1 @@
+`flag: surctf_nightw4lk3r_n1k1ta`
