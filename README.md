@@ -39,7 +39,7 @@
 
 ### `#stegano`
 [surctf_stick](tasks/stega/surctf_stick)  
-[i hate stega](tasks/stega/i%20hate%20stega)  
+[i hate stega](tasks/stega/i_hate_stega)  
 [forbidden_photo_zone](tasks/stega/forbidden_photo_zone)  
 [Symphony](tasks/stega/Symphony)  
 
