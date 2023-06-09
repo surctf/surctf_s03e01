@@ -3,4 +3,4 @@ by [@galaxyshad](https://github.com/galaxyshad), [#stegano](/README.md#stegano),
 
 > Фото зона постоянно меняется, как аномалии и мутанты, элементы динамического мира повсюду вокруг вас...  
 
-[Write-up](WRITEUP.md)
+[Write-up](forbidden_photo_zone.pdf)
