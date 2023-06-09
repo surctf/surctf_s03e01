@@ -10,4 +10,4 @@ by [@fezwect](https://github.com/fezwect), [#osint](/README.md#osint), 150
 > Пример адреса: "проспект Мира, 12"  
 > *(флаг вводить в нижнем регистре)*  
 
-[Write-up](WRITEUP.md)
+[Write-up](Вечерняя%20прогулка.pdf)
