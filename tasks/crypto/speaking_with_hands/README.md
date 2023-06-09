@@ -5,4 +5,4 @@ by [@galaxyshad](https://github.com/galaxyshad), [#crypto](/README.md#crypto), 2
 >  
 > [speaking-with-hands.jpg](speaking-with-hands.jpg)  
 
-[Write-up](WRITEUP.md)
+[Write-up](speaking_with_hands.pdf)
