@@ -22,4 +22,4 @@ by [@galaxyshad](https://github.com/galaxyshad), [#joy](/README.md#joy), 300
 > [Mark The Game - Windows Executable (exe)](https://drive.google.com/file/d/1Zf-QhLIa7uJwsr9pCZCXyOLDR3YkvIW6/view?usp=sharing)  
 > [Mark The Game - ZIP](https://drive.google.com/file/d/1YBYAyTNWAUbLENMcSdlv938x28iwVUL4/view?usp=sharing)  
 
-[Write-up](WRITEUP.md)
+[Write-up](mark_the_game_lvl1.pdf)
